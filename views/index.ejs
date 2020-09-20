@@ -1,0 +1,39 @@
+<%- include('./partials/head.ejs') %> 
+
+<body>
+  <div id="page">
+    <div class="card-content">
+      <h1>PgAdmin | Node.js</h1>
+    
+      <form method="POST" action="/query">
+        <div class="form-input">
+          <label for="query">Your Query</label>
+          <textarea name="query" id="query" cols="30" rows="5"></textarea>
+        </div>
+
+        <button type="submit" class="btn-query">Enviar</button>
+      </form>     
+      
+      <% if (queryParams.containsQuery) { %>
+        <p><%- queryParams.original %> </p>        
+        <div class="query-table">
+          <table>
+            <tr>
+              <% queryParams.columns.forEach( column => { %>
+                  <th> <%- column %> </th>
+              <% }) %>
+            </tr>
+              <% queryParams.rows.forEach( row => { %>
+              <tr>
+                <% queryParams.columns.forEach( column => { %>
+                  <td> <%- row[column] %> </td>
+                <% }) %>
+              </tr>
+            <% }) %>
+          </table>
+      <% } %> 
+    </div>
+  </div>
+</body>
+
+</html>
